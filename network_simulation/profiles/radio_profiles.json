@@ -1,0 +1,79 @@
+{
+  "version": "3GPP Rel-16 5G-NR",
+  "carrier_freq_ghz": 3.5,
+  "channel_bandwidth_mhz": 100,
+  "subcarrier_spacing_khz": 30,
+  "gnb_location": {
+    "x": 0.0,
+    "y": 15.0,
+    "z": 20.0
+  },
+  "profiles": {
+    "los_optimal": {
+      "name": "LOS Optimal (Direct Antenna Line-of-Sight)",
+      "rsrp_dbm": -75.0,
+      "sinr_db": 28.0,
+      "cqi": 15,
+      "mcs": "256QAM",
+      "latency_ms": 4.2,
+      "jitter_ms": 0.8,
+      "packet_loss_pct": 0.0,
+      "throughput_mbps": 152.0
+    },
+    "los_good": {
+      "name": "LOS Good (Nominal Inspection Flight)",
+      "rsrp_dbm": -85.0,
+      "sinr_db": 20.5,
+      "cqi": 13,
+      "mcs": "64QAM",
+      "latency_ms": 8.5,
+      "jitter_ms": 1.5,
+      "packet_loss_pct": 0.05,
+      "throughput_mbps": 98.0
+    },
+    "nlos_moderate": {
+      "name": "NLOS Moderate (Facade Reflected Ray)",
+      "rsrp_dbm": -98.0,
+      "sinr_db": 12.0,
+      "cqi": 9,
+      "mcs": "16QAM",
+      "latency_ms": 22.0,
+      "jitter_ms": 4.5,
+      "packet_loss_pct": 0.8,
+      "throughput_mbps": 42.0
+    },
+    "shadowed_degraded": {
+      "name": "Shadowed Degraded (Behind Pier / Deck Occlusion)",
+      "rsrp_dbm": -110.0,
+      "sinr_db": 4.2,
+      "cqi": 5,
+      "mcs": "QPSK",
+      "latency_ms": 55.0,
+      "jitter_ms": 15.0,
+      "packet_loss_pct": 3.5,
+      "throughput_mbps": 14.5
+    },
+    "cell_edge": {
+      "name": "Cell Edge (Long Distance Inspection Boundary)",
+      "rsrp_dbm": -118.0,
+      "sinr_db": -2.0,
+      "cqi": 2,
+      "mcs": "QPSK-Robust",
+      "latency_ms": 120.0,
+      "jitter_ms": 35.0,
+      "packet_loss_pct": 9.0,
+      "throughput_mbps": 4.2
+    },
+    "handover_drop": {
+      "name": "Handover Drop (Beam Failure / Severe Deep Fade)",
+      "rsrp_dbm": -126.0,
+      "sinr_db": -8.5,
+      "cqi": 1,
+      "mcs": "BPSK",
+      "latency_ms": 350.0,
+      "jitter_ms": 80.0,
+      "packet_loss_pct": 30.0,
+      "throughput_mbps": 0.8
+    }
+  }
+}

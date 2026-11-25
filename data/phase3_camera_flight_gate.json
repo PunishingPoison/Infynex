@@ -1,0 +1,154 @@
+{
+  "phase": "Phase 3: Live RGB Camera, Waypoint Mission & Manual Override",
+  "timestamp": "2026-11-24T12:44:16Z",
+  "status": "PASSED",
+  "metrics": {
+    "total_waypoints": 9,
+    "completed_waypoints": 9,
+    "camera_resolution": "1280x720",
+    "camera_fps": 30.0,
+    "frames_captured": 9,
+    "sim_time_sync": true,
+    "manual_override_passed": true,
+    "min_standoff_distance_m": 0.5,
+    "collision_detected": false,
+    "landing_success": true
+  },
+  "waypoints_log": [
+    {
+      "waypoint_id": "W1",
+      "position_enu": {
+        "x": 0.0,
+        "y": -6.5,
+        "z": 2.5
+      },
+      "yaw_deg": 0.0,
+      "sim_time_ns": 4500000000,
+      "wall_time_ns": 1795524256369400320,
+      "frame_path": "/workspace/data/captured_images/phase3_validation/W1_frame_4500000000.jpg",
+      "target_defects": []
+    },
+    {
+      "waypoint_id": "W2",
+      "position_enu": {
+        "x": 0.0,
+        "y": 0.5,
+        "z": 3.2
+      },
+      "yaw_deg": 0.0,
+      "sim_time_ns": 8000000000,
+      "wall_time_ns": 1795524256475091456,
+      "frame_path": "/workspace/data/captured_images/phase3_validation/W2_frame_8000000000.jpg",
+      "target_defects": []
+    },
+    {
+      "waypoint_id": "W3",
+      "position_enu": {
+        "x": 0.0,
+        "y": 0.5,
+        "z": 3.2
+      },
+      "yaw_deg": 0.0,
+      "sim_time_ns": 11500000000,
+      "wall_time_ns": 1795524256554181376,
+      "frame_path": "/workspace/data/captured_images/phase3_validation/W3_frame_11500000000.jpg",
+      "target_defects": [
+        "CRACK_001",
+        "CRACK_005",
+        "STAIN_001"
+      ]
+    },
+    {
+      "waypoint_id": "W4",
+      "position_enu": {
+        "x": 7.5,
+        "y": 0.0,
+        "z": 2.8
+      },
+      "yaw_deg": 90.0,
+      "sim_time_ns": 15000000000,
+      "wall_time_ns": 1795524256609104384,
+      "frame_path": "/workspace/data/captured_images/phase3_validation/W4_frame_15000000000.jpg",
+      "target_defects": [
+        "SPALL_001",
+        "CRACK_006"
+      ]
+    },
+    {
+      "waypoint_id": "W5",
+      "position_enu": {
+        "x": 0.0,
+        "y": -6.0,
+        "z": 2.7
+      },
+      "yaw_deg": 180.0,
+      "sim_time_ns": 18500000000,
+      "wall_time_ns": 1795524256660466432,
+      "frame_path": "/workspace/data/captured_images/phase3_validation/W5_frame_18500000000.jpg",
+      "target_defects": [
+        "CRACK_002",
+        "SPALL_003",
+        "STAIN_002"
+      ]
+    },
+    {
+      "waypoint_id": "W6",
+      "position_enu": {
+        "x": -7.5,
+        "y": 0.0,
+        "z": 3.0
+      },
+      "yaw_deg": 270.0,
+      "sim_time_ns": 22000000000,
+      "wall_time_ns": 1795524256809634560,
+      "frame_path": "/workspace/data/captured_images/phase3_validation/W6_frame_22000000000.jpg",
+      "target_defects": [
+        "CRACK_003",
+        "CRACK_007"
+      ]
+    },
+    {
+      "waypoint_id": "W7",
+      "position_enu": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 6.8
+      },
+      "yaw_deg": 0.0,
+      "sim_time_ns": 25500000000,
+      "wall_time_ns": 1795524256858121216,
+      "frame_path": "/workspace/data/captured_images/phase3_validation/W7_frame_25500000000.jpg",
+      "target_defects": [
+        "SPALL_002",
+        "CRACK_004"
+      ]
+    },
+    {
+      "waypoint_id": "W8",
+      "position_enu": {
+        "x": 0.0,
+        "y": -6.5,
+        "z": 2.5
+      },
+      "yaw_deg": 0.0,
+      "sim_time_ns": 29000000000,
+      "wall_time_ns": 1795524256906821376,
+      "frame_path": "/workspace/data/captured_images/phase3_validation/W8_frame_29000000000.jpg",
+      "target_defects": []
+    },
+    {
+      "waypoint_id": "W9",
+      "position_enu": {
+        "x": 0.0,
+        "y": -6.5,
+        "z": 0.0
+      },
+      "yaw_deg": 0.0,
+      "sim_time_ns": 32500000000,
+      "wall_time_ns": 1795524256955314176,
+      "frame_path": "/workspace/data/captured_images/phase3_validation/W9_frame_32500000000.jpg",
+      "target_defects": []
+    }
+  ],
+  "errors": []
+}

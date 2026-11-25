@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <model name="concrete_structure">
+    <static>true</static>
+    <link name="link">
+      <!-- High-Fidelity Canonical Visual Mesh -->
+      <visual name="structure_visual">
+        <geometry>
+          <mesh>
+            <uri>model://concrete_structure/concrete_structure.obj</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.65 0.66 0.68 1.0</ambient>
+          <diffuse>0.65 0.66 0.68 1.0</diffuse>
+          <specular>0.2 0.2 0.2 1.0</specular>
+        </material>
+      </visual>
+
+      <!-- Stable High-Performance Analytical Collision Primitives (Zero ODE Mesh Degeneracy) -->
+      <!-- 1. Foundation Pad -->
+      <collision name="col_foundation">
+        <pose>0.0 0.0 0.3 0 0 0</pose>
+        <geometry><box><size>14.0 9.0 0.6</size></box></geometry>
+      </collision>
+
+      <!-- 2. North Pillar -->
+      <collision name="col_north_pillar">
+        <pose>0.0 2.5 3.1 0 0 0</pose>
+        <geometry><box><size>1.4 1.4 5.0</size></box></geometry>
+      </collision>
+
+      <!-- 3. South Pillar -->
+      <collision name="col_south_pillar">
+        <pose>0.0 -2.5 3.1 0 0 0</pose>
+        <geometry><box><size>1.4 1.4 5.0</size></box></geometry>
+      </collision>
+
+      <!-- 4. Shear Web Wall -->
+      <collision name="col_shear_wall">
+        <pose>0.0 0.0 2.85 0 0 0</pose>
+        <geometry><box><size>0.8 3.6 4.5</size></box></geometry>
+      </collision>
+
+      <!-- 5. East Flank Wall -->
+      <collision name="col_east_flank">
+        <pose>3.2 0.0 2.4 0 0 0</pose>
+        <geometry><box><size>2.8 1.2 3.6</size></box></geometry>
+      </collision>
+
+      <!-- 6. West Buttress Wall -->
+      <collision name="col_west_flank">
+        <pose>-3.2 0.0 2.4 0 0 0</pose>
+        <geometry><box><size>2.8 1.2 3.6</size></box></geometry>
+      </collision>
+
+      <!-- 7. Overhead Cantilever Deck -->
+      <collision name="col_overhead_deck">
+        <pose>0.0 0.0 6.0 0 0 0</pose>
+        <geometry><box><size>16.0 7.0 0.8</size></box></geometry>
+      </collision>
+
+      <!-- 8. North Parapet -->
+      <collision name="col_north_parapet">
+        <pose>0.0 3.375 6.9 0 0 0</pose>
+        <geometry><box><size>16.0 0.25 1.0</size></box></geometry>
+      </collision>
+
+      <!-- 9. South Parapet -->
+      <collision name="col_south_parapet">
+        <pose>0.0 -3.375 6.9 0 0 0</pose>
+        <geometry><box><size>16.0 0.25 1.0</size></box></geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

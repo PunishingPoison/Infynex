@@ -1,0 +1,14 @@
+[0;34m================================================================[0m
+[0;34m  INFYNEX Phase 1: Host Environment & Hardware Verification      [0m
+[0;34m  Timestamp: 2026-11-24 12:24:00 UTC                 [0m
+[0;34m================================================================[0m
+[1/7] Operating System: [0;32mPASS[0m -> Ubuntu 26.04.1 LTS (resolute)
+[2/7] Linux Kernel: [0;32mPASS[0m -> 7.0.0-43-generic (x86_64)
+[3/7] Memory & System RAM: [0;32mPASS[0m -> Total: 14700 MB | Available: 9105 MB
+[4/7] NVIDIA GPU & Driver: [0;32mPASS[0m -> NVIDIA GeForce RTX 3050 Laptop GPU | Driver: 595.99.02 | VRAM: 3759 MiB free / 4096 MiB total
+[5/7] Docker & Docker Compose v2: [0;32mPASS[0m -> Docker: 29.1.3 | Compose: v5.7.1
+[6/7] Display / Window Server: [0;32mPASS[0m -> Wayland (wayland-0)
+[7/7] Container GPU Acceleration Test: [0;32mPASS[0m -> NVIDIA GeForce RTX 3050 Laptop GPU verified inside Ubuntu 24.04 container
+[0;34m================================================================[0m
+[0;32m✓ Phase 1 Host Verification Gate PASSED.[0m
+Saved verification record to /home/vcmr/Downloads/INFYNEX/data/host_verification_report.txt

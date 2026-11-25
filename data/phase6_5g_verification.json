@@ -1,0 +1,87 @@
+{
+  "phase": "Phase 6: 5G NR Radio Sim & Live tc netem Adapter",
+  "status": "PASSED",
+  "profiles_tested": [
+    "los_optimal",
+    "nlos_moderate",
+    "shadowed_degraded"
+  ],
+  "measured_link_behavior": {
+    "los_optimal": {
+      "radio_profile": {
+        "name": "LOS Optimal (Direct Antenna Line-of-Sight)",
+        "rsrp_dbm": -75.0,
+        "sinr_db": 28.0,
+        "cqi": 15,
+        "mcs": "256QAM",
+        "latency_ms": 4.2,
+        "jitter_ms": 0.8,
+        "packet_loss_pct": 0.0,
+        "throughput_mbps": 152.0
+      },
+      "measured_probe": {
+        "probes_sent": 8,
+        "probes_received": 8,
+        "avg_rtt_ms": 6.48,
+        "min_rtt_ms": 5.82,
+        "max_rtt_ms": 9.25,
+        "jitter_ms": 3.43,
+        "packet_loss_pct": 0.0,
+        "target_url": "http://localhost:8000/api/v1/health"
+      }
+    },
+    "nlos_moderate": {
+      "radio_profile": {
+        "name": "NLOS Moderate (Facade Reflected Ray)",
+        "rsrp_dbm": -98.0,
+        "sinr_db": 12.0,
+        "cqi": 9,
+        "mcs": "16QAM",
+        "latency_ms": 22.0,
+        "jitter_ms": 4.5,
+        "packet_loss_pct": 0.8,
+        "throughput_mbps": 42.0
+      },
+      "measured_probe": {
+        "probes_sent": 8,
+        "probes_received": 8,
+        "avg_rtt_ms": 24.1,
+        "min_rtt_ms": 23.7,
+        "max_rtt_ms": 24.58,
+        "jitter_ms": 0.88,
+        "packet_loss_pct": 0.0,
+        "target_url": "http://localhost:8000/api/v1/health"
+      }
+    },
+    "shadowed_degraded": {
+      "radio_profile": {
+        "name": "Shadowed Degraded (Behind Pier / Deck Occlusion)",
+        "rsrp_dbm": -110.0,
+        "sinr_db": 4.2,
+        "cqi": 5,
+        "mcs": "QPSK",
+        "latency_ms": 55.0,
+        "jitter_ms": 15.0,
+        "packet_loss_pct": 3.5,
+        "throughput_mbps": 14.5
+      },
+      "measured_probe": {
+        "probes_sent": 8,
+        "probes_received": 8,
+        "avg_rtt_ms": 57.24,
+        "min_rtt_ms": 56.76,
+        "max_rtt_ms": 57.73,
+        "jitter_ms": 0.97,
+        "packet_loss_pct": 0.0,
+        "target_url": "http://localhost:8000/api/v1/health"
+      }
+    }
+  },
+  "exit_gate": {
+    "dynamic_occlusion_passed": true,
+    "profile_propagation_passed": true,
+    "rtt_degradation_observed": true,
+    "los_optimal_rtt_ms": 6.48,
+    "shadowed_degraded_rtt_ms": 57.24
+  }
+}

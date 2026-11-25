@@ -1,0 +1,41 @@
+# INFYNEX Normal Inspection Scenario Configuration
+scenario_name: "Normal Infrastructure Survey"
+description: "Standard structural inspection mission over an undamaged concrete structure with optimal 5G connectivity."
+
+environment:
+  world: "concrete_infrastructure.sdf"
+  lighting: "clear_noon"
+  wind_velocity: [0.0, 0.0, 0.0]
+
+drone:
+  model: "x500"
+  initial_pose: [0.0, 0.0, 0.0, 0.0] # [x, y, z, yaw]
+  takeoff_altitude: 2.5
+  cruise_speed_mps: 1.5
+  waypoints:
+    - { id: "W1", x: 0.0, y: 0.0, z: 2.5, yaw: 0.0, action: "takeoff" }
+    - { id: "W2", x: 2.0, y: 0.0, z: 2.5, yaw: 0.0, action: "approach" }
+    - { id: "W3", x: 4.0, y: -2.0, z: 3.0, yaw: 90.0, action: "inspect_front" }
+    - { id: "W4", x: 6.0, y: 0.0, z: 3.0, yaw: 0.0, action: "inspect_corner" }
+    - { id: "W5", x: 6.0, y: 3.0, z: 3.5, yaw: 270.0, action: "inspect_right" }
+    - { id: "W6", x: 4.0, y: 5.0, z: 3.5, yaw: 180.0, action: "inspect_rear" }
+    - { id: "W7", x: 1.0, y: 3.0, z: 3.0, yaw: 90.0, action: "inspect_left" }
+    - { id: "W8", x: 1.0, y: 0.0, z: 2.5, yaw: 0.0, action: "align_home" }
+    - { id: "W9", x: 0.0, y: 0.0, z: 0.0, yaw: 0.0, action: "land" }
+
+camera:
+  capture_rate_hz: 5
+  resolution: [1280, 720]
+  format: "RGB8"
+
+iot:
+  active_nodes: ["ESP32_001", "ESP32_002", "ESP32_003", "ESP32_004"]
+  fault_injection: false
+  sample_interval_sec: 1.0
+
+network:
+  scenario: "baseline_good_signal"
+  latency_ms: 12.0
+  jitter_ms: 1.5
+  packet_loss_percent: 0.0
+  bandwidth_mbps: 150.0

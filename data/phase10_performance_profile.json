@@ -1,0 +1,42 @@
+{
+  "phase": "Phase 10: Resource Profiling & Hardware Performance Benchmark",
+  "timestamp": "2026-11-24T13:12:53Z",
+  "status": "PASSED",
+  "summary": {
+    "ram_passed": true,
+    "vram_passed": true,
+    "sustained_duration_sec": 3,
+    "host_ram_used_gb": 6.12,
+    "host_ram_limit_gb": 14.0,
+    "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "gpu_vram_used_mib": 12.0,
+    "gpu_vram_limit_mib": 3500.0
+  },
+  "container_footprint": [
+    {
+      "container": "infynex_backend",
+      "cpu_pct": "0.19%",
+      "memory_usage": "247.1MiB / 14.36GiB",
+      "net_io": "31.5kB / 118kB"
+    },
+    {
+      "container": "infynex_dashboard",
+      "cpu_pct": "0.10%",
+      "memory_usage": "171MiB / 14.36GiB",
+      "net_io": "127kB / 4.03MB"
+    },
+    {
+      "container": "infynex_timescaledb",
+      "cpu_pct": "0.75%",
+      "memory_usage": "153.8MiB / 14.36GiB",
+      "net_io": "98.7kB / 31.9kB"
+    },
+    {
+      "container": "infynex_mosquitto",
+      "cpu_pct": "0.07%",
+      "memory_usage": "10.02MiB / 14.36GiB",
+      "net_io": "134kB / 84.6kB"
+    }
+  ],
+  "samples_captured": 2
+}

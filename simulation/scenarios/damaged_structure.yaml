@@ -1,0 +1,45 @@
+# INFYNEX Damaged Structure Scenario Configuration
+scenario_name: "Damaged Infrastructure Inspection"
+description: "Mission evaluating crack detection, concrete spalling segmentation, and 3D surface defect registration."
+
+environment:
+  world: "concrete_infrastructure.sdf"
+  lighting: "overcast_diffuse"
+  wind_velocity: [0.5, -0.2, 0.0]
+
+damages:
+  - id: "CRACK_001"
+    type: "vertical_crack"
+    surface: "front_wall"
+    position: [4.2, -0.5, 2.5]
+    length_cm: 85.0
+    width_mm: 2.8
+    severity: "moderate"
+
+  - id: "CRACK_002"
+    type: "diagonal_shear_crack"
+    surface: "pillar_right_joint"
+    position: [5.8, 1.2, 3.1]
+    length_cm: 120.0
+    width_mm: 4.5
+    severity: "severe"
+
+  - id: "SPALL_001"
+    type: "concrete_spalling"
+    surface: "rear_beam_underside"
+    position: [4.5, 4.8, 3.2]
+    area_cm2: 320.0
+    exposed_rebar: true
+    severity: "critical"
+
+drone:
+  model: "x500"
+  takeoff_altitude: 2.5
+  inspection_speed_mps: 0.8
+  dwell_time_per_target_sec: 3.0
+
+ai:
+  model_type: "yolov8_segmentation"
+  confidence_threshold: 0.65
+  iou_threshold: 0.45
+  raycast_distance_max_m: 8.0

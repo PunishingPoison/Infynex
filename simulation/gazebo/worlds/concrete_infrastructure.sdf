@@ -1,0 +1,227 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="concrete_infrastructure_world">
+    <physics type="ode">
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics>
+
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <!-- Sun light -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 25 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <direction>-0.5 0.2 -0.8</direction>
+    </light>
+
+    <!-- Ground plane / Inspection landing field -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.4 0.42 0.45 1</ambient>
+            <diffuse>0.5 0.52 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Drone Takeoff Helipad Pad Marker -->
+    <model name="helipad">
+      <static>true</static>
+      <pose>0 0 0.01 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>1.2</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.9 0.7 0.1 1</ambient>
+            <diffuse>0.9 0.7 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Reinforced Concrete Infrastructure Structure (Bridge Pier / Facade) -->
+    <model name="concrete_bridge_structure">
+      <static>true</static>
+      <pose>5.0 0.0 0.0 0 0 0</pose>
+
+      <!-- Foundation Anchor -->
+      <link name="foundation">
+        <pose>0 0 0.25 0 0 0</pose>
+        <collision name="col_foundation">
+          <geometry>
+            <box><size>4.0 6.0 0.5</size></box>
+          </geometry>
+        </collision>
+        <visual name="vis_foundation">
+          <geometry>
+            <box><size>4.0 6.0 0.5</size></box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient>
+            <diffuse>0.45 0.45 0.45 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Front Inspection Concrete Wall -->
+      <link name="front_wall">
+        <pose>0 -1.5 2.5 0 0 0</pose>
+        <collision name="col_front_wall">
+          <geometry>
+            <box><size>0.5 3.0 4.0</size></box>
+          </geometry>
+        </collision>
+        <visual name="vis_front_wall">
+          <geometry>
+            <box><size>0.5 3.0 4.0</size></box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Concrete Pillar Left -->
+      <link name="pillar_left">
+        <pose>-0.5 -2.0 2.5 0 0 0</pose>
+        <collision name="col_pillar_left">
+          <geometry>
+            <box><size>1.0 1.0 4.0</size></box>
+          </geometry>
+        </collision>
+        <visual name="vis_pillar_left">
+          <geometry>
+            <box><size>1.0 1.0 4.0</size></box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.55 0.55 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Concrete Pillar Right -->
+      <link name="pillar_right">
+        <pose>-0.5 2.0 2.5 0 0 0</pose>
+        <collision name="col_pillar_right">
+          <geometry>
+            <box><size>1.0 1.0 4.0</size></box>
+          </geometry>
+        </collision>
+        <visual name="vis_pillar_right">
+          <geometry>
+            <box><size>1.0 1.0 4.0</size></box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.55 0.55 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Overhead Horizontal Beam -->
+      <link name="horizontal_beam">
+        <pose>-0.5 0.0 4.75 0 0 0</pose>
+        <collision name="col_beam">
+          <geometry>
+            <box><size>1.2 5.5 0.6</size></box>
+          </geometry>
+        </collision>
+        <visual name="vis_beam">
+          <geometry>
+            <box><size>1.2 5.5 0.6</size></box>
+          </geometry>
+          <material>
+            <ambient>0.45 0.45 0.45 1</ambient>
+            <diffuse>0.58 0.58 0.58 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Structural Damage Marker: CRACK_001 (Vertical Crack) -->
+      <link name="damage_crack_001">
+        <pose>-0.26 -1.2 2.5 0 0 0</pose>
+        <visual name="vis_crack_001">
+          <geometry>
+            <box><size>0.02 0.04 0.85</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.08 1</ambient>
+            <diffuse>0.12 0.12 0.12 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Structural Damage Marker: CRACK_002 (Diagonal Shear Crack) -->
+      <link name="damage_crack_002">
+        <pose>-0.26 1.8 3.1 0 0.7854 0</pose>
+        <visual name="vis_crack_002">
+          <geometry>
+            <box><size>0.02 0.05 1.10</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.08 1</ambient>
+            <diffuse>0.12 0.12 0.12 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Structural Damage Marker: SPALL_001 (Surface Spalling with Exposed Aggregate) -->
+      <link name="damage_spall_001">
+        <pose>-0.26 0.2 3.2 0 0 0</pose>
+        <visual name="vis_spall_001">
+          <geometry>
+            <box><size>0.04 0.45 0.38</size></box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.22 0.18 1</ambient>
+            <diffuse>0.48 0.32 0.25 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

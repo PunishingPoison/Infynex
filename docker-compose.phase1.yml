@@ -1,0 +1,36 @@
+# ==============================================================================
+# INFYNEX Phase 1 Minimal Docker Compose: PX4 SITL & Drone Bridge
+# Validates EKF2 physics, Gazebo Harmonic RTF, and MicroXRCEAgent bridge
+# ==============================================================================
+
+services:
+  px4-gazebo:
+    build:
+      context: ./simulation/docker
+      dockerfile: px4_gazebo.Dockerfile
+    image: infynex-px4-sitl:jazzy
+    container_name: infynex_px4_gazebo
+    restart: "no"
+    network_mode: "host"
+    environment:
+      - DISPLAY=${DISPLAY}
+      - HEADLESS=${PX4_HEADLESS:-1}
+      - PX4_SYS_AUTOSTART=4001
+      - PX4_GZ_MODEL=x500
+      - PX4_SIM_SPEED_FACTOR=1.0
+    volumes:
+      - ./:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    ipc: host
+    privileged: true
+    command: ["test-flight"]
+
+  drone-bridge:
+    image: infynex-px4-sitl:jazzy
+    container_name: infynex_drone_bridge
+    restart: "no"
+    network_mode: "host"
+    volumes:
+      - ./:/workspace
+    ipc: host
+    command: ["agent"]

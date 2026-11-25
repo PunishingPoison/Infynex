@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version="1.9">
+  <world name="bridge_inspection">
+    <physics type="ode">
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics>
+
+    <!-- Core PX4 Simulation Plugins -->
+    <plugin name="gz::sim::systems::Physics" filename="gz-sim-physics-system"/>
+    <plugin name="gz::sim::systems::UserCommands" filename="gz-sim-user-commands-system"/>
+    <plugin name="gz::sim::systems::SceneBroadcaster" filename="gz-sim-scene-broadcaster-system"/>
+    <plugin name="gz::sim::systems::Contact" filename="gz-sim-contact-system"/>
+    <plugin name="gz::sim::systems::Imu" filename="gz-sim-imu-system"/>
+    <plugin name="gz::sim::systems::AirPressure" filename="gz-sim-air-pressure-system"/>
+    <plugin name="gz::sim::systems::ApplyLinkWrench" filename="gz-sim-apply-link-wrench-system"/>
+    <plugin name="gz::sim::systems::NavSat" filename="gz-sim-navsat-system"/>
+    <plugin name="gz::sim::systems::Sensors" filename="gz-sim-sensors-system">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <!-- Gazebo Sim GUI Viewport & Controls -->
+    <gui fullscreen="false">
+      <plugin filename="MinimalScene" name="3D View">
+        <gz-gui>
+          <title>3D View</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.35 0.35 0.38</ambient_light>
+        <background_color>0.72 0.80 0.88</background_color>
+        <camera_pose>-16 -16 11 0 0.38 0.78</camera_pose>
+        <camera_clip>
+          <near>0.1</near>
+          <far>25000</far>
+        </camera_clip>
+      </plugin>
+      <plugin filename="EntityContextMenuPlugin" name="Entity context menu">
+        <gz-gui>
+          <property key="state" type="string">floating</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="showTitleBar" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="GzSceneManager" name="Scene Manager">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="InteractiveViewControl" name="Interactive view control">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="CameraTracking" name="Camera Tracking">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="MarkerManager" name="Marker manager">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="SelectEntities" name="Select Entities">
+        <gz-gui>
+          <anchors target="Select entities">
+            <line own="right" target="right"/>
+            <line own="top" target="top"/>
+          </anchors>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="Spawn" name="Spawn Entities">
+        <gz-gui>
+          <anchors target="Select entities">
+            <line own="right" target="right"/>
+            <line own="top" target="top"/>
+          </anchors>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin name="World control" filename="WorldControl">
+        <gz-gui>
+          <title>World control</title>
+          <property type="bool" key="showTitleBar">0</property>
+          <property type="bool" key="resizable">0</property>
+          <property type="double" key="height">72</property>
+          <property type="double" key="width">121</property>
+          <property type="double" key="z">1</property>
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="left" target="left"/>
+            <line own="bottom" target="bottom"/>
+          </anchors>
+        </gz-gui>
+        <play_pause>1</play_pause>
+        <step>1</step>
+        <start_paused>0</start_paused>
+      </plugin>
+      <plugin name="World stats" filename="WorldStats">
+        <gz-gui>
+          <title>World stats</title>
+          <property type="bool" key="showTitleBar">0</property>
+          <property type="bool" key="resizable">0</property>
+          <property type="double" key="height">110</property>
+          <property type="double" key="width">290</property>
+          <property type="double" key="z">1</property>
+          <property type="string" key="state">floating</property>
+          <anchors target="3D View">
+            <line own="right" target="right"/>
+            <line own="bottom" target="bottom"/>
+          </anchors>
+        </gz-gui>
+        <sim_time>1</sim_time>
+        <real_time>1</real_time>
+        <real_time_factor>1</real_time_factor>
+        <iterations>1</iterations>
+      </plugin>
+      <plugin name="Entity tree" filename="EntityTree"/>
+    </gui>
+
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type="adiabatic"/>
+    <scene>
+      <grid>false</grid>
+      <ambient>0.32 0.33 0.36 1</ambient>
+      <background>0.68 0.76 0.85 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <!-- Balanced Natural Daylight Lighting (Eliminates Pure White Burn-out) -->
+    <light name="sunUTC" type="directional">
+      <pose>0 0 500 0 -0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>0.85</intensity>
+      <direction>-0.3 0.4 -0.8</direction>
+      <diffuse>0.80 0.80 0.82 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>2000</range>
+        <linear>0</linear>
+        <constant>1</constant>
+        <quadratic>0</quadratic>
+      </attenuation>
+    </light>
+
+    <!-- Ambient Sky Fill Light -->
+    <light name="ambient_sky" type="directional">
+      <pose>0 0 100 0 0 0</pose>
+      <cast_shadows>false</cast_shadows>
+      <intensity>0.35</intensity>
+      <direction>0.3 -0.4 -0.8</direction>
+      <diffuse>0.35 0.38 0.42 1</diffuse>
+    </light>
+
+    <!-- GPS Reference Origin Coordinates (Zurich Irchelpark default for PX4) -->
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>47.397971057728974</latitude_deg>
+      <longitude_deg>8.546163739800146</longitude_deg>
+      <elevation>0</elevation>
+    </spherical_coordinates>
+
+    <!-- ================================================================== -->
+    <!-- TERRAIN & HIGHWAY INFRASTRUCTURE                                   -->
+    <!-- ================================================================== -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>200 200</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode><mu>1.0</mu><mu2>1.0</mu2></ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>200 200</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/asphalt_albedo.jpg</albedo_map>
+                <roughness>0.92</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- Inspection Drone Helipad (Takeoff Origin: 0, -9.0, 0.01 - 4m Clear Distance) -->
+    <model name="inspection_helipad">
+      <static>true</static>
+      <pose>0 -9.0 0.01 0 0 0</pose>
+      <link name="link">
+        <!-- Dark Asphalt Outer Launch Apron -->
+        <visual name="pad_apron">
+          <geometry><box><size>4.5 4.5 0.01</size></box></geometry>
+          <material><ambient>0.16 0.16 0.18 1</ambient><diffuse>0.20 0.20 0.22 1</diffuse></material>
+        </visual>
+        <!-- Industrial Rubber Inner Circle -->
+        <visual name="pad_circle">
+          <pose>0 0 0.006 0 0 0</pose>
+          <geometry><cylinder><radius>1.8</radius><length>0.005</length></cylinder></geometry>
+          <material><ambient>0.12 0.12 0.14 1</ambient><diffuse>0.14 0.14 0.16 1</diffuse></material>
+        </visual>
+        <!-- Aviation Yellow Outer Ring -->
+        <visual name="pad_ring">
+          <pose>0 0 0.009 0 0 0</pose>
+          <geometry><cylinder><radius>1.7</radius><length>0.004</length></cylinder></geometry>
+          <material><ambient>0.85 0.65 0.05 1</ambient><diffuse>0.85 0.65 0.05 1</diffuse></material>
+        </visual>
+        <!-- Dark Landing Hub -->
+        <visual name="pad_hub">
+          <pose>0 0 0.012 0 0 0</pose>
+          <geometry><cylinder><radius>1.5</radius><length>0.004</length></cylinder></geometry>
+          <material><ambient>0.15 0.15 0.17 1</ambient><diffuse>0.18 0.18 0.20 1</diffuse></material>
+        </visual>
+        <!-- Yellow 'H' Landing Mark -->
+        <visual name="h_bar_left">
+          <pose>-0.45 0 0.015 0 0 0</pose>
+          <geometry><box><size>0.20 1.1 0.002</size></box></geometry>
+          <material><ambient>0.85 0.65 0.05 1</ambient><diffuse>0.85 0.65 0.05 1</diffuse></material>
+        </visual>
+        <visual name="h_bar_right">
+          <pose>0.45 0 0.015 0 0 0</pose>
+          <geometry><box><size>0.20 1.1 0.002</size></box></geometry>
+          <material><ambient>0.85 0.65 0.05 1</ambient><diffuse>0.85 0.65 0.05 1</diffuse></material>
+        </visual>
+        <visual name="h_bar_cross">
+          <pose>0 0 0.015 0 0 0</pose>
+          <geometry><box><size>0.9 0.20 0.002</size></box></geometry>
+          <material><ambient>0.85 0.65 0.05 1</ambient><diffuse>0.85 0.65 0.05 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Autonomous Inspection Quadcopter (Spawned on Helipad facing South Facade) -->
+    <include>
+      <uri>x500_mono_cam</uri>
+      <name>x500_mono_cam_0</name>
+      <pose>0 -9.0 0.25 0 0 1.5708</pose>
+    </include>
+
+    <!-- ================================================================== -->
+    <!-- REALISTIC 3-STORY CONCRETE INFRASTRUCTURE BUILDING                 -->
+    <!-- Architectural Concrete Facade, Windows, Cornices & Embossed Flaws  -->
+    <!-- ================================================================== -->
+    <model name="inspection_building">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+
+      <link name="building_structure">
+        <!-- 1. Foundation Slab & Entryway Apron -->
+        <collision name="col_foundation">
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry><box><size>14.0 12.0 0.5</size></box></geometry>
+        </collision>
+        <visual name="foundation_apron">
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry><box><size>14.0 12.0 0.5</size></box></geometry>
+          <material>
+            <ambient>0.24 0.24 0.26 1</ambient>
+            <diffuse>0.28 0.28 0.30 1</diffuse>
+          </material>
+        </visual>
+
+        <!-- 2. Main Building Core (Floors 1-3) - Architectural Concrete Grey -->
+        <collision name="col_main_block">
+          <pose>0 0 4.75 0 0 0</pose>
+          <geometry><box><size>10.0 8.0 8.5</size></box></geometry>
+        </collision>
+        <visual name="main_concrete_walls">
+          <pose>0 0 4.75 0 0 0</pose>
+          <geometry><box><size>10.0 8.0 8.5</size></box></geometry>
+          <material>
+            <!-- Photorealistic PBR Architectural Concrete -->
+            <ambient>0.55 0.55 0.55 1</ambient>
+            <diffuse>0.58 0.58 0.58 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/concrete_albedo.jpg</albedo_map>
+                <normal_map type="tangent">/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/concrete_normal.jpg</normal_map>
+                <roughness_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/concrete_roughness.jpg</roughness_map>
+                <metalness>0.0</metalness>
+                <roughness>0.88</roughness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+
+        <!-- 3. Horizontal Floor Slab Divider Cornice (Floor 1 / Floor 2) -->
+        <visual name="cornice_floor_1">
+          <pose>0 0 3.3 0 0 0</pose>
+          <geometry><box><size>10.3 8.3 0.22</size></box></geometry>
+          <material>
+            <ambient>0.20 0.21 0.23 1</ambient>
+            <diffuse>0.26 0.27 0.29 1</diffuse>
+          </material>
+        </visual>
+
+        <!-- 4. Horizontal Floor Slab Divider Cornice (Floor 2 / Floor 3) -->
+        <visual name="cornice_floor_2">
+          <pose>0 0 6.2 0 0 0</pose>
+          <geometry><box><size>10.3 8.3 0.22</size></box></geometry>
+          <material>
+            <ambient>0.20 0.21 0.23 1</ambient>
+            <diffuse>0.26 0.27 0.29 1</diffuse>
+          </material>
+        </visual>
+
+        <!-- 5. Roof Parapet Crown & Metallic Flashing -->
+        <visual name="roof_parapet">
+          <pose>0 0 9.2 0 0 0</pose>
+          <geometry><box><size>10.4 8.4 0.45</size></box></geometry>
+          <material>
+            <ambient>0.18 0.19 0.21 1</ambient>
+            <diffuse>0.22 0.23 0.25 1</diffuse>
+            <specular>0.3 0.3 0.3 1</specular>
+          </material>
+        </visual>
+
+        <!-- 6. Ground Floor Entrance Canopy (South Facade) -->
+        <visual name="entrance_canopy">
+          <pose>0 -4.6 2.4 0 0 0</pose>
+          <geometry><box><size>3.6 1.4 0.18</size></box></geometry>
+          <material><ambient>0.15 0.16 0.18 1</ambient><diffuse>0.20 0.21 0.23 1</diffuse></material>
+        </visual>
+        <visual name="entrance_door">
+          <pose>0 -4.02 1.4 0 0 0</pose>
+          <geometry><box><size>2.4 0.05 1.8</size></box></geometry>
+          <material><ambient>0.10 0.15 0.22 1</ambient><diffuse>0.12 0.20 0.30 1</diffuse><specular>0.7 0.7 0.8 1</specular></material>
+        </visual>
+
+        <!-- 7. Architectural Windows: South Facade Floor 2 & Floor 3 -->
+        <visual name="south_win_f2_left">
+          <pose>-2.8 -4.02 4.7 0 0 0</pose>
+          <geometry><box><size>2.2 0.05 1.4</size></box></geometry>
+          <material><ambient>0.08 0.14 0.22 1</ambient><diffuse>0.10 0.18 0.28 1</diffuse><specular>0.7 0.7 0.8 1</specular></material>
+        </visual>
+        <visual name="south_win_f2_right">
+          <pose>2.8 -4.02 4.7 0 0 0</pose>
+          <geometry><box><size>2.2 0.05 1.4</size></box></geometry>
+          <material><ambient>0.08 0.14 0.22 1</ambient><diffuse>0.10 0.18 0.28 1</diffuse><specular>0.7 0.7 0.8 1</specular></material>
+        </visual>
+        <visual name="south_win_f3_left">
+          <pose>-2.8 -4.02 7.6 0 0 0</pose>
+          <geometry><box><size>2.2 0.05 1.4</size></box></geometry>
+          <material><ambient>0.08 0.14 0.22 1</ambient><diffuse>0.10 0.18 0.28 1</diffuse><specular>0.7 0.7 0.8 1</specular></material>
+        </visual>
+        <visual name="south_win_f3_right">
+          <pose>2.8 -4.02 7.6 0 0 0</pose>
+          <geometry><box><size>2.2 0.05 1.4</size></box></geometry>
+          <material><ambient>0.08 0.14 0.22 1</ambient><diffuse>0.10 0.18 0.28 1</diffuse><specular>0.7 0.7 0.8 1</specular></material>
+        </visual>
+
+        <!-- 8. Architectural Windows: East & West Facades -->
+        <visual name="east_win_f2">
+          <pose>5.02 0.0 4.7 0 0 0</pose>
+          <geometry><box><size>0.05 3.2 1.4</size></box></geometry>
+          <material><ambient>0.08 0.14 0.22 1</ambient><diffuse>0.10 0.18 0.28 1</diffuse><specular>0.7 0.7 0.8 1</specular></material>
+        </visual>
+        <visual name="east_win_f3">
+          <pose>5.02 0.0 7.6 0 0 0</pose>
+          <geometry><box><size>0.05 3.2 1.4</size></box></geometry>
+          <material><ambient>0.08 0.14 0.22 1</ambient><diffuse>0.10 0.18 0.28 1</diffuse><specular>0.7 0.7 0.8 1</specular></material>
+        </visual>
+        <visual name="west_win_f2">
+          <pose>-5.02 0.0 4.7 0 0 0</pose>
+          <geometry><box><size>0.05 3.2 1.4</size></box></geometry>
+          <material><ambient>0.08 0.14 0.22 1</ambient><diffuse>0.10 0.18 0.28 1</diffuse><specular>0.7 0.7 0.8 1</specular></material>
+        </visual>
+        <visual name="west_win_f3">
+          <pose>-5.02 0.0 7.6 0 0 0</pose>
+          <geometry><box><size>0.05 3.2 1.4</size></box></geometry>
+          <material><ambient>0.08 0.14 0.22 1</ambient><diffuse>0.10 0.18 0.28 1</diffuse><specular>0.7 0.7 0.8 1</specular></material>
+        </visual>
+      </link>
+
+      <!-- ================================================================ -->
+      <!-- EMBEDDED PHOTOREALISTIC SURFACE CRACKS & DEFECT DECALS           -->
+      <!-- Seamless weathered PBR concrete defect textures on outer facades   -->
+      <!-- ================================================================ -->
+
+      <!-- [SOUTH FACADE] Primary Inspection Face - visible from helipad -->
+
+      <!-- 1. Major Vertical Structural Tension Crack (Floor 1-2) -->
+      <link name="defect_crack_south_vert">
+        <pose>0.8 -4.005 3.5 0 0 0</pose>
+        <visual name="crack_south_vert_vis">
+          <geometry><box><size>1.2 0.005 2.6</size></box></geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/decal_crack_vertical.jpg</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+
+      <!-- 2. Horizontal Flexural Crack (South Facade Floor Slab Line) -->
+      <link name="defect_crack_south_horiz">
+        <pose>-1.6 -4.005 2.2 0 0 0</pose>
+        <visual name="crack_south_horiz_vis">
+          <geometry><box><size>2.6 0.005 0.8</size></box></geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/decal_crack_horizontal.jpg</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+
+      <!-- 3. Severe Concrete Spalling with Exposed Corroded Rebar (South Facade Pillar) -->
+      <link name="defect_spall_south">
+        <pose>2.6 -4.005 2.2 0 0 0</pose>
+        <visual name="spall_south_vis">
+          <geometry><box><size>1.4 0.005 1.2</size></box></geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/decal_spall_rebar.jpg</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+
+      <!-- [EAST FACADE] Flank Wall Inspection Station -->
+
+      <!-- 4. Diagonal Shear Crack (East Column) -->
+      <link name="defect_crack_east_diag">
+        <pose>5.005 1.2 4.2 0 0 0</pose>
+        <visual name="crack_east_diag_vis">
+          <geometry><box><size>0.005 2.2 1.6</size></box></geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/decal_crack_diagonal.jpg</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+
+      <!-- 5. Concrete Spalling with Exposed Rebar (East Facade) -->
+      <link name="defect_spall_east">
+        <pose>5.005 -1.8 2.2 0 0 0</pose>
+        <visual name="spall_east_vis">
+          <geometry><box><size>0.005 1.4 1.2</size></box></geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/decal_spall_rebar.jpg</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+
+      <!-- [NORTH FACADE] Rear Wall Inspection Station -->
+
+      <!-- 6. Heavy Horizontal Flexural Slab Crack (North Facade) -->
+      <link name="defect_crack_north_horiz">
+        <pose>0.0 4.005 5.8 0 0 0</pose>
+        <visual name="crack_north_horiz_vis">
+          <geometry><box><size>2.8 0.005 0.8</size></box></geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/decal_crack_horizontal.jpg</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+
+      <!-- 7. Vertical Tension Crack (North Facade) -->
+      <link name="defect_crack_north_vert">
+        <pose>-2.2 4.005 3.6 0 0 0</pose>
+        <visual name="crack_north_vert_vis">
+          <geometry><box><size>1.0 0.005 2.4</size></box></geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/decal_crack_vertical.jpg</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+
+      <!-- [WEST FACADE] Buttress & Shear Wall Inspection Station -->
+
+      <!-- 8. Stepped Shear Crack (West Facade) -->
+      <link name="defect_crack_west_diag">
+        <pose>-5.005 -0.5 4.5 0 0 0</pose>
+        <visual name="crack_west_diag_vis">
+          <geometry><box><size>0.005 2.2 1.6</size></box></geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/decal_crack_diagonal.jpg</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+
+      <!-- 9. Foundation Corner Spalling (West Facade) -->
+      <link name="defect_spall_west">
+        <pose>-5.005 1.8 2.0 0 0 0</pose>
+        <visual name="spall_west_vis">
+          <geometry><box><size>0.005 1.4 1.2</size></box></geometry>
+          <material>
+            <ambient>0.6 0.6 0.6 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <pbr>
+              <metal>
+                <albedo_map>/opt/PX4-Autopilot/Tools/simulation/gz/models/infynex_models/materials/textures/decal_spall_rebar.jpg</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+
+    </model>
+
+
+
+  </world>
+</sdf>

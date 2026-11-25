@@ -1,0 +1,84 @@
+# ==============================================================================
+# INFYNEX 360° Circumferential Infrastructure Inspection Mission
+# Assets: Bridge Superstructure Asset A (North, East, South, West Faces & Deck)
+# Standoff Distance: 2.5m - 3.2m with facade-aligned yaw angles
+# ==============================================================================
+
+mission_id: "MISSION_FACADE_SCAN_360"
+asset_id: "INFRA_BRIDGE_PIER_001"
+speed_m_s: 1.5
+hold_time_s: 4.0
+safe_standoff_distance_m: 2.8
+
+waypoints:
+  - id: "W1"
+    name: "Helipad Liftoff & System Calibration"
+    action: "takeoff"
+    position_enu: {x: 0.0, y: -6.5, z: 2.5}
+    yaw_deg: 0.0
+    target_defects: []
+    description: "Autonomous takeoff to initial survey altitude over helipad"
+
+  - id: "W2"
+    name: "North Face Ingress Corridor"
+    action: "navigate"
+    position_enu: {x: 0.0, y: 0.5, z: 3.2}
+    yaw_deg: 0.0
+    target_defects: []
+    description: "Approach north face maintaining 2.7m safe standoff"
+
+  - id: "W3"
+    name: "North Pier Front Facade Scan"
+    action: "inspect"
+    position_enu: {x: 0.0, y: 0.5, z: 3.2}
+    yaw_deg: 0.0
+    target_defects: ["CRACK_001", "CRACK_005", "STAIN_001"]
+    description: "Scan vertical tension crack CRACK_001 and foundation joint CRACK_005"
+
+  - id: "W4"
+    name: "East Flank 90° Circumferential Orbit"
+    action: "inspect"
+    position_enu: {x: 7.5, y: 0.0, z: 2.8}
+    yaw_deg: 90.0
+    target_defects: ["SPALL_001", "CRACK_006"]
+    description: "Scan East wing wall spalling SPALL_001 with exposed rebar"
+
+  - id: "W5"
+    name: "South Face 180° Rear Facade Scan"
+    action: "inspect"
+    position_enu: {x: 0.0, y: -6.0, z: 2.7}
+    yaw_deg: 180.0
+    target_defects: ["CRACK_002", "SPALL_003", "STAIN_002"]
+    description: "Scan horizontal seismic fracture CRACK_002 and impact spall SPALL_003"
+
+  - id: "W6"
+    name: "West Flank 270° Buttress Scan"
+    action: "inspect"
+    position_enu: {x: -7.5, y: 0.0, z: 3.0}
+    yaw_deg: 270.0
+    target_defects: ["CRACK_003", "CRACK_007"]
+    description: "Scan 45-degree diagonal shear stress fracture CRACK_003"
+
+  - id: "W7"
+    name: "Overhead Cantilever Deck Overfly"
+    action: "inspect"
+    position_enu: {x: 0.0, y: 0.0, z: 6.8}
+    yaw_deg: 0.0
+    target_defects: ["SPALL_002", "CRACK_004"]
+    description: "Overfly inspection of deck underside spalling SPALL_002"
+
+  - id: "W8"
+    name: "Corridor Return & Helipad Realignment"
+    action: "navigate"
+    position_enu: {x: 0.0, y: -6.5, z: 2.5}
+    yaw_deg: 0.0
+    target_defects: []
+    description: "Return to takeoff ingress corridor and stabilize over helipad"
+
+  - id: "W9"
+    name: "Autonomous Helipad Touchdown & Disarm"
+    action: "land"
+    position_enu: {x: 0.0, y: -6.5, z: 0.0}
+    yaw_deg: 0.0
+    target_defects: []
+    description: "Precision landing on concentric helipad target and safe engine shutdown"

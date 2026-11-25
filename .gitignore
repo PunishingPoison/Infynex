@@ -1,0 +1,60 @@
+# Byte-compiled / optimized / binary files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python virtual environments & packages
+.env
+.venv/
+env/
+venv/
+ENV/
+node_modules/
+
+# Docker Python package caches
+simulation/docker/py312_cuda_packages/
+simulation/docker/py312_torch_packages/
+
+# ROS 2 build artifacts & logs
+build/
+install/
+log/
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# Simulation runtime caches & temporary snapshots
+data/captured_images/*
+!data/captured_images/.gitkeep
+data/browser_captures/*
+data/detections/*
+!data/detections/.gitkeep
+data/sensor_logs/*
+!data/sensor_logs/.gitkeep
+data/telemetry/*
+!data/telemetry/.gitkeep
+data/network_logs/*
+!data/network_logs/.gitkeep
+data/test_user_images/
+*.jpg
+!simulation/gazebo/models/infynex_models/materials/textures/*.jpg
+
+# PX4 source build artifacts if mounted or checked out locally
+PX4-Autopilot/
+.px4/
+
+# Database data
+pgdata/
+timescale_data/
+mosquitto_data/
+mosquitto_log/
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+*.log

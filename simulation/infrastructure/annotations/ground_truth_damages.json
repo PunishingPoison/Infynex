@@ -1,0 +1,65 @@
+{
+  "project": "INFYNEX",
+  "world": "concrete_infrastructure.sdf",
+  "generated_at": "2026-11-24T14:00:00Z",
+  "damages": [
+    {
+      "damage_id": "CRACK_001",
+      "type": "vertical_crack",
+      "category": "crack",
+      "severity": "moderate",
+      "surface": "front_wall",
+      "surface_normal": [-1.0, 0.0, 0.0],
+      "world_position": {
+        "x": 4.74,
+        "y": -1.2,
+        "z": 2.5
+      },
+      "geometry": {
+        "length_m": 0.85,
+        "width_mm": 2.8,
+        "orientation_deg": 90.0
+      },
+      "inspection_waypoints": ["W3"]
+    },
+    {
+      "damage_id": "CRACK_002",
+      "type": "diagonal_shear_crack",
+      "category": "crack",
+      "severity": "severe",
+      "surface": "pillar_right",
+      "surface_normal": [-1.0, 0.0, 0.0],
+      "world_position": {
+        "x": 4.74,
+        "y": 1.8,
+        "z": 3.1
+      },
+      "geometry": {
+        "length_m": 1.10,
+        "width_mm": 4.5,
+        "orientation_deg": 45.0
+      },
+      "inspection_waypoints": ["W4", "W5"]
+    },
+    {
+      "damage_id": "SPALL_001",
+      "type": "concrete_spalling",
+      "category": "spalling",
+      "severity": "critical",
+      "surface": "front_wall_center",
+      "surface_normal": [-1.0, 0.0, 0.0],
+      "world_position": {
+        "x": 4.74,
+        "y": 0.2,
+        "z": 3.2
+      },
+      "geometry": {
+        "width_m": 0.45,
+        "height_m": 0.38,
+        "depth_mm": 35.0,
+        "exposed_rebar": true
+      },
+      "inspection_waypoints": ["W3", "W4"]
+    }
+  ]
+}

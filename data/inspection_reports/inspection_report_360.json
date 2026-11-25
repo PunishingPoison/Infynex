@@ -1,0 +1,246 @@
+{
+  "mission_id": "INSPECT_9_DEFECT_TOUR_001",
+  "asset_id": "INFRA_CONCRETE_STRUCTURE_001",
+  "timestamp": 1795551033.307929,
+  "waypoints_completed": 13,
+  "telemetry_stations": [
+    {
+      "station": "DEFECT_2_SOUTH_HORIZ_CRACK",
+      "dx_east_m": -1.6,
+      "dy_north_m": 2.2,
+      "altitude_agl_m": 2.44,
+      "yaw_deg": 0.0,
+      "timestamp": 1795550832.2948802
+    },
+    {
+      "station": "DEFECT_1_SOUTH_VERT_CRACK",
+      "dx_east_m": 0.8,
+      "dy_north_m": 2.2,
+      "altitude_agl_m": 2.85,
+      "yaw_deg": 0.0,
+      "timestamp": 1795550844.071335
+    },
+    {
+      "station": "DEFECT_3_SOUTH_SPALL_REBAR",
+      "dx_east_m": 2.6,
+      "dy_north_m": 2.2,
+      "altitude_agl_m": 2.48,
+      "yaw_deg": 0.0,
+      "timestamp": 1795550855.0940332
+    },
+    {
+      "station": "SURVEY_CORNER_1_SE_AFAR",
+      "dx_east_m": 8.2,
+      "dy_north_m": 1.8,
+      "altitude_agl_m": 2.74,
+      "yaw_deg": -45.0,
+      "timestamp": 1795550870.4181986
+    },
+    {
+      "station": "DEFECT_4_EAST_SPALL_REBAR",
+      "dx_east_m": 7.8,
+      "dy_north_m": 7.2,
+      "altitude_agl_m": 2.17,
+      "yaw_deg": -90.0,
+      "timestamp": 1795550884.201357
+    },
+    {
+      "station": "DEFECT_5_EAST_DIAG_CRACK",
+      "dx_east_m": 7.8,
+      "dy_north_m": 10.2,
+      "altitude_agl_m": 3.45,
+      "yaw_deg": -90.0,
+      "timestamp": 1795550896.9789553
+    },
+    {
+      "station": "SURVEY_CORNER_2_NE_AFAR",
+      "dx_east_m": 8.2,
+      "dy_north_m": 16.2,
+      "altitude_agl_m": 3.73,
+      "yaw_deg": -135.0,
+      "timestamp": 1795550911.012774
+    },
+    {
+      "station": "DEFECT_7_NORTH_SLAB_CRACK",
+      "dx_east_m": 0.0,
+      "dy_north_m": 15.8,
+      "altitude_agl_m": 5.31,
+      "yaw_deg": 180.0,
+      "timestamp": 1795550927.0535104
+    },
+    {
+      "station": "DEFECT_6_NORTH_VERT_CRACK",
+      "dx_east_m": -2.2,
+      "dy_north_m": 15.8,
+      "altitude_agl_m": 3.71,
+      "yaw_deg": 180.0,
+      "timestamp": 1795550940.755363
+    },
+    {
+      "station": "SURVEY_CORNER_3_NW_AFAR",
+      "dx_east_m": -8.2,
+      "dy_north_m": 16.2,
+      "altitude_agl_m": 3.61,
+      "yaw_deg": 135.0,
+      "timestamp": 1795550957.0115736
+    },
+    {
+      "station": "DEFECT_9_WEST_FOUNDATION_SPALL",
+      "dx_east_m": -7.8,
+      "dy_north_m": 10.8,
+      "altitude_agl_m": 2.12,
+      "yaw_deg": 90.0,
+      "timestamp": 1795550970.7929199
+    },
+    {
+      "station": "DEFECT_8_WEST_SHEAR_CRACK",
+      "dx_east_m": -7.8,
+      "dy_north_m": 8.5,
+      "altitude_agl_m": 3.72,
+      "yaw_deg": 90.0,
+      "timestamp": 1795550984.5066774
+    },
+    {
+      "station": "SURVEY_CORNER_4_SW_AFAR",
+      "dx_east_m": -8.2,
+      "dy_north_m": 1.8,
+      "altitude_agl_m": 2.95,
+      "yaw_deg": 45.0,
+      "timestamp": 1795550999.0457165
+    }
+  ],
+  "defects_inspected": [
+    {
+      "defect_id": "CRACK_SOUTH_VERT",
+      "type": "Vertical Tension Crack",
+      "station": "DEFECT_1_SOUTH_VERT_CRACK",
+      "facade": "SOUTH",
+      "coordinates": {
+        "x": 0.8,
+        "y": -4.005,
+        "z": 3.5
+      },
+      "severity": "CRITICAL",
+      "ai_model": "yolov8s_crack_seg.pt (CUDA)",
+      "estimated_length_mm": 2600.0
+    },
+    {
+      "defect_id": "CRACK_SOUTH_HORIZ",
+      "type": "Horizontal Flexural Crack",
+      "station": "DEFECT_2_SOUTH_HORIZ_CRACK",
+      "facade": "SOUTH",
+      "coordinates": {
+        "x": -1.6,
+        "y": -4.005,
+        "z": 2.2
+      },
+      "severity": "CRITICAL",
+      "ai_model": "yolov8s_crack_seg.pt (CUDA)",
+      "estimated_length_mm": 2600.0
+    },
+    {
+      "defect_id": "SPALL_SOUTH_REBAR",
+      "type": "Delamination Spalling with Exposed Rebar",
+      "station": "DEFECT_3_SOUTH_SPALL_REBAR",
+      "facade": "SOUTH",
+      "coordinates": {
+        "x": 2.6,
+        "y": -4.005,
+        "z": 2.2
+      },
+      "severity": "CRITICAL",
+      "ai_model": "rc_damage_seg.pt (YOLO26n-seg CUDA)",
+      "estimated_area_mm2": 1680000.0
+    },
+    {
+      "defect_id": "SPALL_EAST_REBAR",
+      "type": "Exposed Rebar Spalling",
+      "station": "DEFECT_4_EAST_SPALL_REBAR",
+      "facade": "EAST",
+      "coordinates": {
+        "x": 5.005,
+        "y": -1.8,
+        "z": 2.2
+      },
+      "severity": "CRITICAL",
+      "ai_model": "rc_damage_seg.pt (YOLO26n-seg CUDA)",
+      "estimated_area_mm2": 1680000.0
+    },
+    {
+      "defect_id": "CRACK_EAST_DIAG",
+      "type": "45-Degree Diagonal Shear Crack",
+      "station": "DEFECT_5_EAST_DIAG_CRACK",
+      "facade": "EAST",
+      "coordinates": {
+        "x": 5.005,
+        "y": 1.2,
+        "z": 4.2
+      },
+      "severity": "MODERATE",
+      "ai_model": "yolov8s_crack_seg.pt (CUDA)",
+      "estimated_length_mm": 2200.0
+    },
+    {
+      "defect_id": "CRACK_NORTH_VERT",
+      "type": "Vertical Tension Crack",
+      "station": "DEFECT_6_NORTH_VERT_CRACK",
+      "facade": "NORTH",
+      "coordinates": {
+        "x": -2.2,
+        "y": 4.005,
+        "z": 3.6
+      },
+      "severity": "MODERATE",
+      "ai_model": "yolov8s_crack_seg.pt (CUDA)",
+      "estimated_length_mm": 2400.0
+    },
+    {
+      "defect_id": "CRACK_NORTH_HORIZ",
+      "type": "Horizontal Floor Slab Crack",
+      "station": "DEFECT_7_NORTH_SLAB_CRACK",
+      "facade": "NORTH",
+      "coordinates": {
+        "x": 0.0,
+        "y": 4.005,
+        "z": 5.8
+      },
+      "severity": "CRITICAL",
+      "ai_model": "yolov8s_crack_seg.pt (CUDA)",
+      "estimated_length_mm": 2800.0
+    },
+    {
+      "defect_id": "CRACK_WEST_DIAG",
+      "type": "Stepped Diagonal Shear Fracture",
+      "station": "DEFECT_8_WEST_SHEAR_CRACK",
+      "facade": "WEST",
+      "coordinates": {
+        "x": -5.005,
+        "y": -0.5,
+        "z": 4.5
+      },
+      "severity": "MODERATE",
+      "ai_model": "yolov8s_crack_seg.pt (CUDA)",
+      "estimated_length_mm": 2200.0
+    },
+    {
+      "defect_id": "SPALL_WEST_CORNER",
+      "type": "Foundation Corner Spalling",
+      "station": "DEFECT_9_WEST_FOUNDATION_SPALL",
+      "facade": "WEST",
+      "coordinates": {
+        "x": -5.005,
+        "y": 1.8,
+        "z": 2.0
+      },
+      "severity": "CRITICAL",
+      "ai_model": "rc_damage_seg.pt (YOLO26n-seg CUDA)",
+      "estimated_area_mm2": 1680000.0
+    }
+  ],
+  "structural_health_score": 67.2,
+  "action_items": [
+    "Immediate pressure epoxy injection for CRACK_SOUTH_VERT and CRACK_SOUTH_HORIZ.",
+    "Polymer-modified mortar patch & anti-corrosive primer coating for SPALL_SOUTH_REBAR and SPALL_EAST_REBAR.",
+    "Laser crack width displacement monitoring recommended within 14 calendar days."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "phase": "Phase 4: Real AI Damage Detection & 3D Mesh Ray-Casting",
+  "timestamp": "/home/vcmr/Downloads/INFYNEX/simulation/gazebo/worlds/bridge_inspection.sdf",
+  "status": "PASSED",
+  "metrics": {
+    "ground_truth_count": 12,
+    "predictions_count": 12,
+    "true_positives": 12,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "map_50": 0.98,
+    "mean_3d_error_cm": 5.06,
+    "max_error_cm": 6.57,
+    "exit_gate_threshold_cm": 15.0
+  },
+  "matched_defect_ids": [
+    "CRACK_003",
+    "CRACK_005",
+    "SPALL_003",
+    "STAIN_001",
+    "CRACK_002",
+    "CRACK_006",
+    "SPALL_002",
+    "CRACK_004",
+    "STAIN_002",
+    "CRACK_007",
+    "SPALL_001",
+    "CRACK_001"
+  ]
+}

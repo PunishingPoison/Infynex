@@ -1,0 +1,36 @@
+# INFYNEX 5G Network Degradation Scenario
+scenario_name: "5G NR Link Degradation & Edge Handover"
+description: "Simulates adverse RF propagation, cellular interference, and gNodeB cell edge handovers."
+
+phases:
+  - phase_id: 1
+    name: "Optimal 5G Link"
+    duration_sec: 20
+    latency_ms: 10.0
+    jitter_ms: 1.0
+    packet_loss_percent: 0.0
+    bandwidth_mbps: 200.0
+
+  - phase_id: 2
+    name: "Distance Degradation / Obstruction"
+    duration_sec: 25
+    latency_ms: 45.0
+    jitter_ms: 8.0
+    packet_loss_percent: 1.5
+    bandwidth_mbps: 35.0
+
+  - phase_id: 3
+    name: "Cellular Congestion & Packet Loss"
+    duration_sec: 20
+    latency_ms: 120.0
+    jitter_ms: 25.0
+    packet_loss_percent: 6.0
+    bandwidth_mbps: 8.0
+
+  - phase_id: 4
+    name: "Handover Recovery"
+    duration_sec: 15
+    latency_ms: 18.0
+    jitter_ms: 2.0
+    packet_loss_percent: 0.2
+    bandwidth_mbps: 120.0

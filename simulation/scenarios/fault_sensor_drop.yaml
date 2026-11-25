@@ -1,0 +1,56 @@
+scenario_name: "fault_sensor_drop"
+description: "Simulates thermal drift, environmental spikes, and abrupt socket kill to verify Mosquitto LWT disconnect alerting"
+
+mqtt_broker:
+  host: "localhost"
+  port: 1883
+  lwt_timeout_sec: 5.0
+
+nodes:
+  - node_id: "ESP32_001"
+    sensor_type: "DS18B20"
+    location: "pier_north"
+    sample_interval_sec: 1.0
+    base_temp_c: 24.5
+
+  - node_id: "ESP32_002"
+    sensor_type: "DS18B20"
+    location: "pier_south"
+    sample_interval_sec: 1.0
+    base_temp_c: 25.2
+
+  - node_id: "ESP32_003"
+    sensor_type: "BME280"
+    location: "abutment_east"
+    sample_interval_sec: 1.0
+    base_temp_c: 26.0
+    base_humidity_pct: 62.0
+    base_pressure_hpa: 1013.25
+
+  - node_id: "ESP32_004"
+    sensor_type: "DHT22"
+    location: "deck_midspan"
+    sample_interval_sec: 2.0
+    base_temp_c: 27.5
+    base_humidity_pct: 58.0
+
+schedule:
+  - time_sec: 5.0
+    action: "inject_fault"
+    target_node: "ESP32_001"
+    fault_type: "drift"
+    magnitude: 14.5 # +14.5C structural thermal drift anomaly
+
+  - time_sec: 10.0
+    action: "inject_fault"
+    target_node: "ESP32_003"
+    fault_type: "spike"
+    magnitude: 98.5 # Humidity spike
+
+  - time_sec: 15.0
+    action: "socket_kill"
+    target_node: "ESP32_004"
+    expected_event: "lwt_offline" # Broker must fire LWT within 5s (by t=20s)
+
+  - time_sec: 25.0
+    action: "terminate"
