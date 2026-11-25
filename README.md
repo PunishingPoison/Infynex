@@ -12,7 +12,7 @@
 
 ---
 
-## 🏛 System Architecture
+## System Architecture
 
 ```
                                  +---------------------------------------------+
@@ -59,12 +59,12 @@
 
 ---
 
-## ⚡ Core Engineering Highlights
+## Core Engineering Highlights
 
-1. **Autonomous 360° Circumferential Inspection Tour:**
-   - Smooth counter-clockwise waypoint circuit navigating all 4 facades (South $\to$ East $\to$ North $\to$ West).
-   - Holds calibrated $2.8\text{ m}$ normal standoffs facing each defect dead-center in the camera field of view.
-   - Dedicated corner waypoints ($45^\circ$, $135^\circ$) guarantee 100% collision-free transit around architectural pillars.
+1. **Autonomous 360-Degree Circumferential Inspection Tour:**
+   - Smooth counter-clockwise waypoint circuit navigating all 4 facades (South to East to North to West).
+   - Holds calibrated 2.8 m normal standoffs facing each defect dead-center in the camera field of view.
+   - Dedicated corner waypoints (45 deg, 135 deg) guarantee 100% collision-free transit around architectural pillars.
    - Autonomous precision takeoff from and touchdown back to the helipad.
 
 2. **Dual-Model Pretrained Deep Learning Damage Segmentation:**
@@ -87,23 +87,23 @@
 
 ---
 
-## 📋 Ground-Truth Defect Catalog (9 Stations)
+## Ground-Truth Defect Catalog (9 Stations)
 
-| Station ID | Facade | Coordinates $(X, Y, Z)$ | Defect Type | Primary AI Model | Severity |
+| Station ID | Facade | Coordinates (X, Y, Z) | Defect Type | Primary AI Model | Severity |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **`DEFECT_1_SOUTH_VERT_CRACK`** | South | $(+0.8, -4.005, 3.5)$ | Vertical Tension Crack | `YOLOv8s-seg` | **CRITICAL** |
-| **`DEFECT_2_SOUTH_HORIZ_CRACK`**| South | $(-1.6, -4.005, 2.2)$ | Horizontal Flexural Crack | `YOLOv8s-seg` | **CRITICAL** |
-| **`DEFECT_3_SOUTH_SPALL_REBAR`** | South | $(+2.6, -4.005, 2.2)$ | Delamination & Rebar Corrosion | `YOLO26n-seg` | **CRITICAL** |
-| **`DEFECT_4_EAST_SPALL_REBAR`**  | East  | $(+5.005, -1.8, 2.2)$ | Exposed Rebar Spall | `YOLO26n-seg` | **CRITICAL** |
-| **`DEFECT_5_EAST_DIAG_CRACK`**   | East  | $(+5.005, +1.2, 4.2)$ | $45^\circ$ Diagonal Shear Crack | `YOLOv8s-seg` | **MODERATE** |
-| **`DEFECT_6_NORTH_VERT_CRACK`**  | North | $(-2.2, +4.005, 3.6)$ | Vertical Column Crack | `YOLOv8s-seg` | **MODERATE** |
-| **`DEFECT_7_NORTH_SLAB_CRACK`**  | North | $(0.0, +4.005, 5.8)$  | Floor Slab Horizontal Crack | `YOLOv8s-seg` | **CRITICAL** |
-| **`DEFECT_8_WEST_SHEAR_CRACK`**  | West  | $(-5.005, -0.5, 4.5)$ | Stepped Diagonal Shear Fracture| `YOLOv8s-seg` | **MODERATE** |
-| **`DEFECT_9_WEST_FOUNDATION_SPALL`**| West | $(-5.005, +1.8, 2.0)$ | Foundation Corner Spalling | `YOLO26n-seg` | **CRITICAL** |
+| **`DEFECT_1_SOUTH_VERT_CRACK`** | South | (+0.8, -4.005, 3.5) | Vertical Tension Crack | `YOLOv8s-seg` | **CRITICAL** |
+| **`DEFECT_2_SOUTH_HORIZ_CRACK`**| South | (-1.6, -4.005, 2.2) | Horizontal Flexural Crack | `YOLOv8s-seg` | **CRITICAL** |
+| **`DEFECT_3_SOUTH_SPALL_REBAR`** | South | (+2.6, -4.005, 2.2) | Delamination & Rebar Corrosion | `YOLO26n-seg` | **CRITICAL** |
+| **`DEFECT_4_EAST_SPALL_REBAR`**  | East  | (+5.005, -1.8, 2.2) | Exposed Rebar Spall | `YOLO26n-seg` | **CRITICAL** |
+| **`DEFECT_5_EAST_DIAG_CRACK`**   | East  | (+5.005, +1.2, 4.2) | 45-Degree Diagonal Shear Crack | `YOLOv8s-seg` | **MODERATE** |
+| **`DEFECT_6_NORTH_VERT_CRACK`**  | North | (-2.2, +4.005, 3.6) | Vertical Column Crack | `YOLOv8s-seg` | **MODERATE** |
+| **`DEFECT_7_NORTH_SLAB_CRACK`**  | North | (0.0, +4.005, 5.8)  | Floor Slab Horizontal Crack | `YOLOv8s-seg` | **CRITICAL** |
+| **`DEFECT_8_WEST_SHEAR_CRACK`**  | West  | (-5.005, -0.5, 4.5) | Stepped Diagonal Shear Fracture| `YOLOv8s-seg` | **MODERATE** |
+| **`DEFECT_9_WEST_FOUNDATION_SPALL`**| West | (-5.005, +1.8, 2.0) | Foundation Corner Spalling | `YOLO26n-seg` | **CRITICAL** |
 
 ---
 
-## 🛠 Prerequisites & Installation
+## Prerequisites & Installation
 
 ### 1. System Requirements
 - **Host OS:** Linux Ubuntu 22.04 LTS / 24.04 LTS / 26.04 LTS
@@ -131,11 +131,11 @@ export DISPLAY=${DISPLAY:-:0}
 
 ---
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 ### Option A: The All-in-One Master Launcher (Recommended)
 
-Run this single command to launch all 3 simulation windows and automatically execute the 360° autonomous inspection tour:
+Run this single command to launch all 3 simulation windows and automatically execute the 360-degree autonomous inspection tour:
 
 ```bash
 cd ~/Downloads/INFYNEX
@@ -183,7 +183,7 @@ bash scripts/run_opencv_camera_view.sh
 #### Terminal 4 — Flight Control Execution
 Choose either automated inspection or manual teleoperation:
 
-* **Automated 360° Inspection Tour:**
+* **Automated 360-Degree Inspection Tour:**
   ```bash
   cd ~/Downloads/INFYNEX
   bash scripts/start_360_inspection_flight.sh
@@ -220,7 +220,7 @@ docker compose up -d mosquitto timescaledb backend dashboard
 
 ---
 
-## 📁 Repository Directory Structure
+## Repository Directory Structure
 
 ```
 INFYNEX/
@@ -257,7 +257,7 @@ INFYNEX/
 
 ---
 
-## 📊 Inspection Reports & Verification Data
+## Inspection Reports & Verification Data
 
 Upon mission completion, INFYNEX compiles an inspection report containing timestamps, GPS fixes, millimeter crack estimates, spall surface areas, and recommended repair actions:
 
@@ -267,7 +267,7 @@ Upon mission completion, INFYNEX compiles an inspection report containing timest
 
 ---
 
-## 🛑 Clean Shutdown
+## Clean Shutdown
 
 To stop all background processes, windows, and Docker containers:
 ```bash
@@ -278,7 +278,7 @@ docker compose down 2>/dev/null || true
 
 ---
 
-## 👤 Author
+## Author
 
 **V C Mohit Rao** ([@PunishingPoison](https://github.com/PunishingPoison))  
 *INFYNEX: Autonomous Cyber-Physical Digital Twin Infrastructure Inspection Platform*
